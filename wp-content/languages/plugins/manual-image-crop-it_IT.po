@@ -1,0 +1,204 @@
+# Translation of Stable (latest release) in Italian
+# This file is distributed under the same license as the Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-04-24 11:32:13+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.1.0-alpha\n"
+"Project-Id-Version: Stable (latest release)\n"
+
+#: lib/ManualImageCrop.php:58
+msgid "Crop"
+msgstr "Ritaglia"
+
+#. #-#-#-#-#  tmp-manual-image-crop.pot (Manual Image Crop 1.12)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: lib/ManualImageCrop.php:67 lib/ManualImageCrop.php:94
+#: lib/ManualImageCrop.php:104 lib/ManualImageCrop.php:131
+#: lib/ManualImageCropSettingsPage.php:46
+msgid "Manual Image Crop"
+msgstr "Manual Image Crop"
+
+#: lib/ManualImageCrop.php:67
+msgid "Crop featured image"
+msgstr "Ritaglia immagine in evidenza"
+
+#: lib/ManualImageCrop.php:94 lib/ManualImageCrop.php:104
+#: lib/ManualImageCrop.php:131
+msgid "Crop Image"
+msgstr "Ritaglia immagine"
+
+#: lib/ManualImageCropEditorWindow.php:31
+msgid "Pick the image size:"
+msgstr "Scegli la dimensione dell’immagine:"
+
+#: lib/ManualImageCropEditorWindow.php:44
+#: lib/ManualImageCropSettingsPage.php:133
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+#: lib/ManualImageCropEditorWindow.php:45
+#: lib/ManualImageCropSettingsPage.php:134
+msgid "Medium"
+msgstr "Media"
+
+#: lib/ManualImageCropEditorWindow.php:46
+#: lib/ManualImageCropSettingsPage.php:135
+msgid "Large"
+msgstr "Grande"
+
+#: lib/ManualImageCropEditorWindow.php:47
+#: lib/ManualImageCropSettingsPage.php:136
+msgid "Full Size"
+msgstr "Dimensione intera"
+
+#: lib/ManualImageCropEditorWindow.php:166
+msgid "Original picture dimensions:"
+msgstr "Dimensioni dell’immagine originale:"
+
+#: lib/ManualImageCropEditorWindow.php:168
+msgid "Target picture dimensions:"
+msgstr "Dimensioni dell’immagine di destinazione:"
+
+#: lib/ManualImageCropEditorWindow.php:174
+msgid "Soft proportional crop mode"
+msgstr "Modalità taglio proporzionale"
+
+#: lib/ManualImageCropEditorWindow.php:175
+msgid "Hard crop mode"
+msgstr "Modalità taglio non proporzionale"
+
+#: lib/ManualImageCropEditorWindow.php:181
+msgid "New image:"
+msgstr "Nuova immagine:"
+
+#: lib/ManualImageCropEditorWindow.php:190
+msgid "Previous image:"
+msgstr "Immagine precedente:"
+
+#: lib/ManualImageCropEditorWindow.php:199
+msgid "Crop it!"
+msgstr "Ritaglia l’immagine!"
+
+#: lib/ManualImageCropEditorWindow.php:207
+msgid "Target JPEG Quality"
+msgstr "Qualità JPEG di destinazione"
+
+#: lib/ManualImageCropEditorWindow.php:208
+#: lib/ManualImageCropSettingsPage.php:175
+msgid "100 (best quality, biggest file)"
+msgstr "100 (migliore qualità, file più grande)"
+
+#: lib/ManualImageCropEditorWindow.php:209
+#: lib/ManualImageCropSettingsPage.php:176
+msgid "80 (very high quality)"
+msgstr "80 (qualità molto alta)"
+
+#: lib/ManualImageCropEditorWindow.php:210
+#: lib/ManualImageCropSettingsPage.php:177
+msgid "70 (high quality)"
+msgstr "70 (alta qualità)"
+
+#: lib/ManualImageCropEditorWindow.php:211
+#: lib/ManualImageCropSettingsPage.php:178
+msgid "60 (good)"
+msgstr "60 (buona)"
+
+#: lib/ManualImageCropEditorWindow.php:212
+#: lib/ManualImageCropSettingsPage.php:179
+msgid "50 (average)"
+msgstr "50 (media)"
+
+#: lib/ManualImageCropEditorWindow.php:213
+#: lib/ManualImageCropSettingsPage.php:180
+msgid "30 (low)"
+msgstr "30 (bassa)"
+
+#: lib/ManualImageCropEditorWindow.php:214
+#: lib/ManualImageCropSettingsPage.php:181
+msgid "10 (very low, smallest file)"
+msgstr "10 (bassa qualità, file più piccolo)"
+
+#: lib/ManualImageCropEditorWindow.php:223
+msgid "Generate Retina/HiDPI (@2x):"
+msgstr "Genera per retina/HiDPI (@2x)"
+
+#: lib/ManualImageCropEditorWindow.php:230
+msgid "The image has been cropped successfully"
+msgstr "L’immagine è stata ritagliata con successo"
+
+#: lib/ManualImageCropEditorWindow.php:234
+msgid "An Error has occured. Please try again or contact plugin's author."
+msgstr "Si è verificato un errore. Prova di nuovo o contatta l’autore del plugin."
+
+#: lib/ManualImageCropEditorWindow.php:278
+msgid "Compatible"
+msgstr "Compatibile"
+
+#: lib/ManualImageCropEditorWindow.php:280
+msgid "Source too small"
+msgstr "Sorgente troppo piccola"
+
+#: lib/ManualImageCropSettingsPage.php:45
+#: lib/ManualImageCropSettingsPage.php:61
+msgid "Manual Image Crop Settings"
+msgstr "Impostazioni di Manual Image Crop"
+
+#: lib/ManualImageCropSettingsPage.php:87
+msgid "Mic Custom Settings"
+msgstr "Impostazioni personalizzate di MIC"
+
+#: lib/ManualImageCropSettingsPage.php:94
+msgid "Crop sizes settings"
+msgstr "Impostazioni dimensioni di ritaglio"
+
+#: lib/ManualImageCropSettingsPage.php:120
+msgid "Enter your settings below:"
+msgstr "Inserisci le tue impostazioni qui sotto:"
+
+#: lib/ManualImageCropSettingsPage.php:143
+msgid "Size"
+msgstr "Dimensione"
+
+#: lib/ManualImageCropSettingsPage.php:144
+msgid "Visible"
+msgstr "Visibile"
+
+#: lib/ManualImageCropSettingsPage.php:145
+msgid "Default JPEG Quality"
+msgstr "Qualità JPEG predefinita"
+
+#: lib/ManualImageCropSettingsPage.php:146
+msgid "Custom Label"
+msgstr "Etichetta personalizzata"
+
+#: lib/ManualImageCropSettingsPage.php:171
+msgid "Yes"
+msgstr "Sì"
+
+#: lib/ManualImageCropSettingsPage.php:172
+msgid "No"
+msgstr "No"
+
+#: manual-image-crop.php:68
+msgid "Settings"
+msgstr "Impostazioni"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/tomaszsita/wp-manual-image-crop"
+msgstr "https://github.com/tomaszsita/wp-manual-image-crop"
+
+#. Description of the plugin/theme
+msgid "Plugin allows you to manually crop all the image sizes registered in your WordPress theme (in particular featured image). Simply click on the \"Crop\" link next to any image in your media library and select the area of the image you want to crop."
+msgstr "Questo plugin ti permette di ritagliare manualmente tutte le dimensioni delle immagini registrate nel tuo tema WordPress (in particolare l’immagine in evidenza). Semplicemente fai clic sul link «Ritaglia» vicino a ogni immagine nella tua libreria media e seleziona l’area dell’immagine che vuoi ritagliare."
+
+#. Author of the plugin/theme
+msgid "Tomasz Sita"
+msgstr "Tomasz Sita"
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/tomaszsita"
+msgstr "https://github.com/tomaszsita"

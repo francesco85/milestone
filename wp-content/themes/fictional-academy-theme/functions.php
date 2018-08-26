@@ -1,0 +1,193 @@
+<?php
+require get_theme_file_path("/inc/like-route.php");
+require get_theme_file_path("/inc/search-route.php");  
+
+function univ_custom_rest(){
+    //3 parametri: tipo post, label campo, array che descrive come vogliamo gestire questo campo..array avrà un solo elemento che conterrà funzione callback che restituirà valore del campo
+    register_rest_field('post','authorName', array(
+        'get_callback' => function(){return get_the_author();}
+    ));
+    
+    register_rest_field('note','userNoteCount', array(
+        'get_callback' => function(){return count_user_posts(get_current_user_id(),'note');}
+    ));
+    
+    
+    
+}
+
+add_action('rest_api_init','univ_custom_rest');
+
+function pageBanner($args = NULL){
+  if(!$args['title']){
+      $args['title']= get_the_title();
+  }
+    if(!$args['subtitle']){
+      $args['subtitle']= get_field('page_banner_subtitle');
+    }
+    if(!$args['photo']){
+      if(get_field('page_banner_background')){
+          
+        $args['photo'] = get_field('page_banner_background')['sizes']['pageBanner'];
+      }else{
+          $args['photo'] = get_theme_file_uri('/images/ocean.jpg');
+      }
+    }
+    ?>
+    
+    <div class="page-banner">
+            <div class="page-banner__bg-image" style="background-image: url(<?php echo $args['photo'];?>);"></div>
+            <div class="page-banner__content container container--narrow">
+              <h1 class="page-banner__title"><?php echo $args['title']; ?></h1>
+              <div class="page-banner__intro">
+                <p><?php echo $args['subtitle'];?></p>
+              </div>
+            </div>  
+        </div>
+    
+    <?php  
+}
+ 
+function university_resources(){
+  
+    
+    wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=AIzaSyBh9b1rNCp6kOi5JeMHiRP4klDymBeoEWk', NULL, '1.0', true);
+    wp_enqueue_script('main-university-js', get_theme_file_uri('/js/scripts-bundled.js'), NULL, microtime(), true);
+    wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
+    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    wp_enqueue_style('university_main_styles', get_stylesheet_uri());
+    
+    wp_localize_script('main-university-js', 'univData', array(
+        'root_url' => get_site_url(),
+        'nonce' => wp_create_nonce('wp_rest')
+    ));
+
+} 
+
+
+add_action('wp_enqueue_scripts','university_resources');
+
+function university_features(){
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+    add_image_size('professorLandscape',400,260,true);//true = crop or not
+    add_image_size('profPortrait',480,650,array('left','top')); 
+    add_image_size('pageBanner',1500,350,true); 
+    register_nav_menu('headerMenu','Main Navigation');
+    register_nav_menu('footerMenu1','Footer Navigation 1');
+    register_nav_menu('footerMenu2','Footer Navigation 2');
+}
+
+add_action('after_setup_theme', 'university_features');
+
+function university_adjust_queries($query){
+    if(!is_admin() AND is_post_type_archive('campus') AND $query->is_main_query()){
+        $query->set('posts_per_page', -1);
+    }
+    
+    if(!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()){
+        $query->set('orderby','title');
+        $query->set('order','ASC');
+        $query->set('posts_per_page', -1);
+    }
+    
+    $today = date('Ymd');
+    //non influenza il backend, solo custom p type event ed evitiamo di influenzare anche altre custom (is_main_query(restituisce true se query è la default url query!))
+    if(!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()){
+       $query->set('meta_key','event_date'); 
+       $query->set('orderby','meta_value_num'); 
+       $query->set('order','ASC'); 
+       $query->set('meta_query',[
+           'key'=> 'event_date',
+           'compare'=> '>=',
+           'value'=> $today,
+           'type' => 'numeric'
+       ]); 
+        
+        
+    }
+}
+
+add_action('pre_get_posts', 'university_adjust_queries');
+
+function universityMapKey($api){
+    $api['key'] = 'AIzaSyC4ljl6pMKT8HPV6nnaznYpXy6Tiu8t9d4';
+    return $api;
+}
+add_filter('acf/fields/gogle_map/api','universityMapKey');
+
+
+
+//redirect subscriber account
+
+function redirectSubsToFrontend(){
+    $currentUser = wp_get_current_user();
+    //se user ha almeno un ruolo e quel ruolo è subscriber
+    if(count($currentUser->roles) == 1 AND $currentUser->roles[0] == 'subscriber'){
+        wp_redirect(site_url('/'));
+        exit;//dice a wp di fermarsi una volta che facciamo redirect
+    }
+}
+
+add_action('admin_init','redirectSubsToFrontend');
+
+//hide admin bar once logged in
+function noSubsAdminBar(){
+    $currentUser = wp_get_current_user();
+    //se user ha almeno un ruolo e quel ruolo è subscriber
+    if(count($currentUser->roles) == 1 AND $currentUser->roles[0] == 'subscriber'){
+        show_admin_bar(false);
+    }
+}
+
+add_action('wp_loaded','noSubsAdminBar');
+
+
+//customizing login screen
+
+//2 argomenti: l'oggetto che vuoi customizzare(nome del filter hook in questo caso) e una funzione che restitusca ciò che invece vuoi utilizzare in sostituzione del default
+add_filter('login_headerurl','ourHeaderUrl');
+
+function ourHeaderUrl(){
+    return esc_url(site_url('/'));
+}
+
+
+
+add_action('login_enqueue_scripts', 'ourLoginCss');
+
+function ourLoginCss(){
+    wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
+    wp_enqueue_style('university_main_styles', get_stylesheet_uri());
+}
+
+
+add_filter('login_headertitle', 'ourLoginTitle');
+
+function ourLoginTitle(){
+    return get_bloginfo('name');
+}
+
+
+//force note posts to be private
+
+//questo filtro ci permette di intercettare dati inviati dall'utente prima che questi vengano salvati..questo filtro si innesca non solo alla creazione di un post ma anche alla sua modifica o cancellazione
+add_filter('wp_insert_post_data','makeNotePrivate',10,2);
+//inseriamo un altro parametro che contiene id e per farlo dobbiamo specificare al filtro che passiamo 2 parametri...il numero 10 è solo ordine di priorità di default perchè ad esempio per lo stesso filtro possiamo più funczioni e dobbiamo specificarne la priorità
+// esempio add_filter('wp_insert_post_data','cicciopasticcio',1,3); priorità 1 e 3 params
+function makeNotePrivate($data, $postarr){
+    if($data['post_type'] == 'note'){
+        
+        if(count_user_posts(get_current_user_id(),'note') > 2 AND !$postarr['ID']){
+            die('You\'ve write too many posts, sorry');
+        }
+        
+        $data['post_title'] = sanitize_text_field($data['post_title']);
+        $data['post_content'] = sanitize_textarea_field($data['post_content']);
+    }
+    
+    if($data['post_type'] == 'note' AND $data['post_status'] != 'trash'){
+        $data['post_status'] = 'private';
+    }
+    return $data;
+}

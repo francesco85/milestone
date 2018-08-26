@@ -1,0 +1,2 @@
+nella cartella dove hai creato git repo (progetto) creiamo .gitignore file per ignorare i file in esso elencati.. fa al caso nostro il local.php che verrà ignorato quando faremo deploy live! 
+inseriamo path del file es. app/local.php
