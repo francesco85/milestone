@@ -1,2 +1,18 @@
-nella cartella dove hai creato git repo (progetto) creiamo .gitignore file per ignorare i file in esso elencati.. fa al caso nostro il local.php che verrà ignorato quando faremo deploy live! 
+Come strumento di repository utilizzeremo bitbucket (https://bitbucket.org) anzichè github perchè gratis per repo illimitate, con github solo con versione premium.
+Nella cartella dove hai creato git repo (https://bitbucket.org/francesco85/functional-university/src/master/) creiamo .gitignore file per ignorare i file in esso elencati.. fa al caso nostro il local.php che verrà ignorato quando faremo deploy live! 
 inseriamo path del file es. app/local.php
+
+spostiamo nel desktop il file e con cmd prepariamo alla commit le modifiche effettuate
+git add -A
+
+poi commit
+git commit -m 'Rimozione file local.php'
+
+poi facciamo push sul brunch master della repo
+
+git push origin master
+
+ora se rimettiamo file nella cartella e facciamo git status non vedremo nulla perchè file ignorato
+
+
+Dopo dobbiamo cercare di fare deploy da repo a server..usiamo deployhq (https://www.deployhq.com/)  ma ne esistono altri validi come https://deploybot.com/ (ma a pagamento) oppure https://ftploy.com/ (ha piano free ma meno features rispetto agli altri)
